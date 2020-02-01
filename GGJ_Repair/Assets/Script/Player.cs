@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private Audio myaudio;
     [HideInInspector]public int point;
     [HideInInspector]public int rank;
+    [HideInInspector]public int laps;
     
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+    }
+
+    void Rank(){
+        //set rank based on array position
+        rank++;
+    }
+    void lapsCount(){
+        //count personal number of laps
+        laps++;
     }
 
     void Move()

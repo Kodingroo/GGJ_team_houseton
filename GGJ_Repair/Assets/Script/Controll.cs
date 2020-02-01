@@ -42,6 +42,8 @@ public class Controll : MonoBehaviour
         public string right;
         [Header("down(Keyboard)")]
         public string down;
+        [Header("accelerate(Keyboard)")]
+        public string accelerate;
     }
     [SerializeField]
     private Controllerbuttom[] mycontroller;

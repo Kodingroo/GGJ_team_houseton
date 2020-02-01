@@ -21,6 +21,7 @@ public class Checkpoint : MonoBehaviour
         if (other.gameObject.tag == "Player1" || other.gameObject.tag == "Player2" || other.gameObject.tag == "Player3" || other.gameObject.tag == "Player4")
         {
             lm.Position(other);
+            Debug.Log("here");
         }
     }
 }
