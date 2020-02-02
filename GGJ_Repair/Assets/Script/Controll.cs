@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 
 
-
 public class Controll : MonoBehaviour
 {
     [Header("Please select the way Camera follow.Yes for follow camera No for no movement camera")]
@@ -25,7 +24,6 @@ public class Controll : MonoBehaviour
     private int[] playerrank;
     public float scale;
     public float maxscale;
-    public float minscale;
     [Header("input the maxcamera position x")]
     public float thecamerax;
     [Header("input the maxcamera position y")]
@@ -42,6 +40,8 @@ public class Controll : MonoBehaviour
         public string right;
         [Header("down(Keyboard)")]
         public string down;
+        [Header("accelerate(Keyboard)")]
+        public string accelerate;
     }
     [SerializeField]
     private Controllerbuttom[] mycontroller;
@@ -55,13 +55,10 @@ public class Controll : MonoBehaviour
     [SerializeField]
     [Header("Set the timer of the game(seconds)")]
     private float time;
-    private LevelManager mylv;
-
 
     // Start is called before the first frame update
     void Awake()
     {
-        mylv = GetComponent<LevelManager>();
         playerpoint = new int[playersnum];
         manager = GameObject.FindGameObjectWithTag("LevelManagement").GetComponent<Manager>();
         StartCoroutine(timer());
@@ -146,8 +143,6 @@ public class Controll : MonoBehaviour
                 mycamera.orthographicSize = Mathf.Lerp(mycamera.orthographicSize,distance*scale,smooth);
                 if (mycamera.orthographicSize >= maxscale)
                     mycamera.orthographicSize = maxscale;
-                if (mycamera.orthographicSize <= minscale)
-                    mycamera.orthographicSize = minscale;
                 this.transform.position = Vector3.Lerp(transform.position,mainpoint,Time.deltaTime*smooth);
                 // Debug.Log("I'm moving");
             }
@@ -158,8 +153,8 @@ public class Controll : MonoBehaviour
 
     void Findthefirst()
     {
-        firstplayer = mylv.players[0];
-        lastplayer = mylv.players[1];
+        firstplayer = findplayers[0];
+        lastplayer = findplayers[1];
 
     }//wait for the find the first
 

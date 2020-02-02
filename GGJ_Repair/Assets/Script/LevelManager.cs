@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     private GameObject[] lap1;
     List<string> lap2 = new List<string>();
     List<string> lap3 = new List<string>();
-    private int lapCount = 1;
+    Player reference;
     void Awake()
     {
         if (instance == null)
@@ -22,6 +22,17 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void gameOver(){
+
+    }
+
+    void wipeScore(){
+        //when length of an array becomes greater than 0, delete scores. 
+    }
+
+    void displayScore(){
+        //send scores to front end 
+    }
     [SerializeField] public GameObject[] players;
     void Start()
     {
@@ -32,14 +43,19 @@ public class LevelManager : MonoBehaviour
     {
         foreach (GameObject player in players)
         {
+            reference = playerObject.GetComponent<Player>();
             if (lap2.Contains($"{playerObject.tag}"))
             {
                 lap3.Add($"{playerObject.tag}");
+                reference.rank++;
+                Debug.Log("rank" + reference.rank);
                 return lap3.IndexOf($"{playerObject.tag}");
             }
             else
-            {
+            {   
                 lap2.Add($"{playerObject.tag}");
+                reference.rank++;
+                Debug.Log("rank" + reference);                
                 return lap2.IndexOf($"{playerObject.tag}");
             }
         }
